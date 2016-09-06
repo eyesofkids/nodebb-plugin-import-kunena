@@ -125,7 +125,7 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 		var query = 'SELECT '
 				+ prefix + 'usergroups.id as _gid, '
 				+ prefix + 'usergroups.title as _name, '
-				+ prefix + 'user_usergroup_map.users_id AS _ownerUid '
+				+ prefix + 'user_usergroup_map.user_id AS _ownerUid '
 				+ 'FROM ' + prefix + 'user_usergroup_map '
 				+ 'JOIN ' + prefix + 'usergroups ON ' + prefix + 'user_usergroup_map.group_id=' + prefix + 'usergroups.id '
 				+ 'GROUP BY ' + prefix + 'user_usergroup_map.group_id '
