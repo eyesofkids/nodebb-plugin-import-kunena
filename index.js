@@ -6,8 +6,8 @@ var noop = function(){};
 var logPrefix = '[nodebb-plugin-import-kunena]';
 
 // add converter for bbcode
-// var path = require('path');
-// var converter = require( path.resolve( __dirname, "./converter.js" ) );
+var path = require('path');
+var converter = require( path.resolve( __dirname, "./converter.js" ) );
 
 
 (function(Exporter) {
@@ -125,10 +125,9 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 		var query = 'SELECT '
 				+ prefix + 'usergroups.id as _gid, '
 				+ prefix + 'usergroups.title as _name, '
-				+ prefix + 'users.id AS _ownerUid '
+				+ prefix + 'user_usergroup_map.users_id AS _ownerUid '
 				+ 'FROM ' + prefix + 'user_usergroup_map '
 				+ 'JOIN ' + prefix + 'usergroups ON ' + prefix + 'user_usergroup_map.group_id=' + prefix + 'usergroups.id '
-				+ 'JOIN ' + prefix + 'users ON ' + prefix + 'user_usergroup_map.user_id=' + prefix + 'users.id '
 				+ 'GROUP BY ' + prefix + 'user_usergroup_map.group_id '
 				+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
 
