@@ -128,7 +128,6 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 				+ prefix + 'user_usergroup_map.user_id AS _ownerUid '
 				+ 'FROM ' + prefix + 'user_usergroup_map '
 				+ 'JOIN ' + prefix + 'usergroups ON ' + prefix + 'user_usergroup_map.group_id=' + prefix + 'usergroups.id '
-				+ 'GROUP BY ' + prefix + 'user_usergroup_map.group_id '
 				+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
 
 
