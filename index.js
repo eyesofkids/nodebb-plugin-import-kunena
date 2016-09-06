@@ -6,8 +6,8 @@ var noop = function(){};
 var logPrefix = '[nodebb-plugin-import-kunena]';
 
 // add converter for bbcode
-var path = require('path');
-var converter = require( path.resolve( __dirname, "./converter.js" ) );
+//var path = require('path');
+//var converter = require( path.resolve( __dirname, "./converter.js" ) );
 
 
 (function(Exporter) {
