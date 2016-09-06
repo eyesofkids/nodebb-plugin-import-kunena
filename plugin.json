@@ -2,7 +2,7 @@
 	"id": "nodebb-plugin-import-kunena",
 	"name": "nodebb-plugin-import-kunena",
 	"description": "Exporter for kunena forum compatible with nodebb-plugin-import",
-	"url": "https://github.com/akhoury/nodebb-plugin-import-ubb",
+	"url": "https://github.com/eyesofkids/nodebb-plugin-import-kunena",
 	"library": "./admin/index.js",
 	"hooks": [
 		{ "hook": "filter:admin.header.build", "method": "admin.menu"},

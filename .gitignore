@@ -18,3 +18,4 @@ node_modules
 sftp-config.json
 tmp.json
 .DS_Store
+results.json
