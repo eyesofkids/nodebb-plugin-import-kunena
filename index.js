@@ -63,7 +63,6 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 				+ prefix + 'kunena_users.birthdate as _birthday, '
 				+ prefix + 'users.block as _banned, '
 				+ prefix + 'kunena_users.group_id as _gid '
-
 				+ 'FROM ' + prefix + 'kunena_users '
 				+ 'JOIN ' + prefix + 'users ON ' + prefix + 'kunena_users.userid = ' + prefix + 'users.id '
 				//+ 'LEFT JOIN ' + prefix + 'BANNED_USERS ON ' + prefix + 'BANNED_USERS.USER_ID = ' + prefix + 'USERS.USER_ID '
