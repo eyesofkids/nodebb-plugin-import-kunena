@@ -308,17 +308,23 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 
 					//normalize here
 					var map = {};
+
+          var attachments = [];
+
 					rows.forEach(function(row) {
 
             //attachments
+
+
             if (row._attachments) {
-							row._attachments = [row._attachments];
+							 attachments = [row._attachments];
 						}
 
-            row._attachments.forEach(function(attach){
+            attachments.forEach(function(attach){
                 attach = 'https://joomla.org.tw/media/kunena/attachments/' + row._uid + '/' + attach;
             });
 
+            row._attachments = attachments;
 
 						row._content = row._content || '';
 						row._timestamp = ((row._timestamp || 0) * 1000) || startms;
