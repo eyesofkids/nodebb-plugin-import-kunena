@@ -318,7 +318,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 
 
 
-              var attachments = [ row._attachments ];
+              var attachments = row._attachments.split(',');
 
            if (attachments.length) {
               for(var i = 0; i< attachments.length; i++){
