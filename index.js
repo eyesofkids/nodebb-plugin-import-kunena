@@ -98,7 +98,12 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 						row._website = Exporter.validateUrl(row._website);
 
             //avatar: change for your site url
-            row._picture = avatarUrl + row._picture;
+            if(row._picture){
+              row._picture = avatarUrl + row._picture;
+            }else{
+              row._picture = '';
+            }
+
 
 
             //birthdate
