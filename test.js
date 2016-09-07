@@ -1,13 +1,13 @@
 var fs = require('fs-extra');
 
 require('./index').testrun({
-    dbhost: 'joomla.dev',
+    dbhost: 'localhost',
     dbport: 3306,
-    dbname: 'kunena_import_test',
+    dbname: 'kunena',
     dbuser: 'kunena',
-    dbpass: '12345678',
+    dbpass: 'password',
 
-    tablePrefix: 'amnp8_'
+    tablePrefix: 'prefix_'
 }, function(err, results) {
     results.forEach(function(result, i) {
 		console.log(i, result && Object.keys(result).length);
