@@ -315,8 +315,8 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 							row._attachments = [row._attachments];
 						}
 
-            row._attachments.forEach(function(value){
-                value='https://joomla.org.tw/media/kunena/attachments/'.row_uid.value;
+            row._attachments.forEach(function(attach){
+                attach = 'https://joomla.org.tw/media/kunena/attachments/' + row._uid + '/' + attach;
             });
 
 
@@ -335,8 +335,8 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 	function getConversations (callback) {
 		callback = !_.isFunction(callback) ? noop : callback;
 
-		var prefix = Exporter.config('prefix');
-		var startms = +new Date();
+		//var prefix = Exporter.config('prefix');
+		//var startms = +new Date();
 
 		// var query = 'SELECT '
 		// 		+ prefix + 'PRIVATE_MESSAGE_USERS.TOPIC_ID as _cvid, '
@@ -388,8 +388,8 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 			Exporter.setup(Exporter.config());
 		}
 
-		var prefix = Exporter.config('prefix');
-		var startms = +new Date();
+		//var prefix = Exporter.config('prefix');
+		//var startms = +new Date();
 
 		// var query = 'SELECT '
 		// 		+ prefix + 'PRIVATE_MESSAGE_POSTS.POST_ID as _mid, '
