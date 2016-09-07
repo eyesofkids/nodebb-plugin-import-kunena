@@ -94,11 +94,11 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 						row._email = (row._email || '').toLowerCase();
 
 						// I don't know about you about I noticed a lot my users have incomplete urls, urls like: http://
-						row._picture = Exporter.validateUrl(row._picture);
+						//row._picture = Exporter.validateUrl(row._picture);
 						row._website = Exporter.validateUrl(row._website);
 
             //avatar: change for your site url
-            row._picture = avatarUrl+row._picture;
+            row._picture = avatarUrl + row._picture;
 
 
             //birthdate
