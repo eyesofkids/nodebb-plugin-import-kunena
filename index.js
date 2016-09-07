@@ -97,7 +97,7 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 						row._website = Exporter.validateUrl(row._website);
 
             //avatar: change for your site url
-            row._picture = 'https://joomla.org.tw/media/kunena/avatars/'.row._picture;
+            row._picture = 'https://joomla.org.tw/media/kunena/avatars/'+row._picture;
 
 
             //birthdate
