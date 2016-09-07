@@ -12,5 +12,5 @@ require('./index').testrun({
     results.forEach(function(result, i) {
 		console.log(i, result && Object.keys(result).length);
 	});
-	 fs.writeFileSync('./results.json', JSON.stringify(results, undefined, 2));
+	 fs.writeFileSync('./test.json', JSON.stringify(results, undefined, 2));
 });
