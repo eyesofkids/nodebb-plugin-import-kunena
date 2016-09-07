@@ -5,10 +5,6 @@ var _ = require('underscore');
 var noop = function(){};
 var logPrefix = '[nodebb-plugin-import-kunena]';
 
-// add converter for bbcode
-//var path = require('path');
-//var converter = require( path.resolve( __dirname, "./converter.js" ) );
-
 
 (function(Exporter) {
 
@@ -48,10 +44,10 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 				+ prefix + 'users.username as _username, '
 				+ prefix + 'users.name as _alternativeUsername, '
 				+ prefix + 'users.email as _registrationEmail, '
-				+ prefix + 'kunena_users.rank as _level, '
-				+ prefix + 'users.registerDate as _joindate, '
+				+ 'UNIX_TIMESTAMP(' + prefix + 'users.registerDate) as _joindate, '
 				+ prefix + 'kunena_users.banned as _banned, '
 				+ prefix + 'users.email as _email, '
+        + prefix + 'kunena_users.moderator as _level, '
 				+ prefix + 'kunena_users.signature as _signature, '
 				+ prefix + 'kunena_users.websiteurl as _website, '
 				+ prefix + 'kunena_users.status_text as _occupation, '
@@ -62,9 +58,11 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 				+ prefix + 'kunena_users.view as _profileviews, '
 				+ prefix + 'kunena_users.birthdate as _birthday, '
 				+ prefix + 'users.block as _banned, '
-				+ prefix + 'kunena_users.group_id as _gid '
+				+ prefix + 'user_usergroup_map.group_id as _gid '
 				+ 'FROM ' + prefix + 'kunena_users '
 				+ 'JOIN ' + prefix + 'users ON ' + prefix + 'kunena_users.userid = ' + prefix + 'users.id '
+        + 'JOIN ' + prefix + 'user_usergroup_map ON ' + prefix + 'user_usergroup_map.user_id = ' + prefix + 'users.id '
+
 				//+ 'LEFT JOIN ' + prefix + 'BANNED_USERS ON ' + prefix + 'BANNED_USERS.USER_ID = ' + prefix + 'USERS.USER_ID '
 				//+ 'LEFT JOIN ' + prefix + 'USER_GROUPS ON ' + prefix + 'USER_GROUPS.USER_ID = ' + prefix + 'USERS.USER_ID '
 				+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
@@ -89,12 +87,19 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 						// from unix timestamp (s) to JS timestamp (ms)
 						row._joindate = ((row._joindate || 0) * 1000) || startms;
 
+            row._level = row._level ? 'moderator' : '';
+
 						// lower case the email for consistency
 						row._email = (row._email || '').toLowerCase();
 
 						// I don't know about you about I noticed a lot my users have incomplete urls, urls like: http://
 						row._picture = Exporter.validateUrl(row._picture);
 						row._website = Exporter.validateUrl(row._website);
+
+            //birthdate
+            var birthdate = new Date(row._birthday);
+
+            row._birthday = (birthdate.getMonth() + 1) + '/' + birthdate.getDate() + '/' +  birthdate.getFullYear();
 
 						row._banned = row._banned ? 1 : 0;
 
@@ -127,6 +132,7 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 				+ prefix + 'user_usergroup_map.user_id AS _ownerUid '
 				+ 'FROM ' + prefix + 'user_usergroup_map '
 				+ 'JOIN ' + prefix + 'usergroups ON ' + prefix + 'user_usergroup_map.group_id=' + prefix + 'usergroups.id '
+				+ 'GROUP BY ' + prefix + 'user_usergroup_map.group_id '
 				+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
 
 

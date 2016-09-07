@@ -13,10 +13,10 @@
       "_username": "eddy",
       "_alternativeUsername": "Super User",
       "_registrationEmail": "eddy@joomla.com.tw",
-      "_level": 0,
-      "_joindate": 1473115136000000,
+      "_joindate": 1473143936000,
       "_banned": 0,
       "_email": "eddy@joomla.com.tw",
+      "_level": "",
       "_signature": null,
       "_website": "",
       "_occupation": "",
@@ -25,9 +25,9 @@
       "_badge": 0,
       "_reputation": 0,
       "_profileviews": "",
-      "_birthday": "2000-12-31T16:00:00.000Z",
+      "_birthday": "1/1/2001",
       "_groups": [
-        1
+        8
       ]
     }
   },
@@ -45,7 +45,7 @@
       "_parentCid": 0,
       "_order": 1,
       "_description": "This is the main forum section. It serves as a container for categories for your topics.",
-      "_timestamp": 1473146213213
+      "_timestamp": 1473218743302
     },
     "2": {
       "_cid": 2,
@@ -53,7 +53,7 @@
       "_parentCid": 1,
       "_order": 1,
       "_description": "We encourage new members to introduce themselves here. Get to know one another and share your interests.",
-      "_timestamp": 1473146213213
+      "_timestamp": 1473218743302
     },
     "3": {
       "_cid": 3,
@@ -61,7 +61,7 @@
       "_parentCid": 1,
       "_order": 2,
       "_description": "Have some feedback and input to share? \n Don't be shy and drop us a note. We want to hear from you and strive to make our site better and more user friendly for our guests and members a like.",
-      "_timestamp": 1473146213213
+      "_timestamp": 1473218743302
     }
   },
   {
