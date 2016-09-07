@@ -318,12 +318,13 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 
 
             if (row._attachments) {
-							 attachments = [row._attachments];
-						}
+              attachments = [ row._attachments ];
 
-            attachments.forEach(function(attach){
-                attach = attachmentUrl + row._uid + '/' + attach;
-            });
+              for(var i = 0; i< attachments.length; i++){
+                attachments[i] = attachmentUrl + row._uid + '/' + attachments[i] ;
+              }
+
+						}
 
             row._attachments = attachments;
 
