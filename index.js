@@ -96,6 +96,10 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 						row._picture = Exporter.validateUrl(row._picture);
 						row._website = Exporter.validateUrl(row._website);
 
+            //avatar: change for your site url
+            row._picture = 'https://joomla.org.tw/media/kunena/avatars/'.row._picture;
+
+
             //birthdate
             var birthdate = new Date(row._birthday);
 
@@ -277,15 +281,14 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 				+ prefix + 'kunena_messages.time as _timestamp, '
 				+ prefix + 'kunena_messages.parent as _toPid, '
 				+ prefix + 'kunena_messages.locked as _locked, '
-				//+ prefix + 'POST_LAST_EDITED_TIME as _edited, '
+				+ 'GROUP_CONCAT(' + prefix + 'kunena_attachments.filename) as _attachments, '
 				+ prefix + 'kunena_messages.ip as _ip '
-
-
 				+ 'FROM ' + prefix + 'kunena_messages '
 				+ 'JOIN ' + prefix + 'kunena_messages_text ON ' + prefix + 'kunena_messages.id=' + prefix + 'kunena_messages_text.mesid '
-
+        + 'JOIN ' + prefix + 'kunena_attachments ON ' + prefix + 'kunena_messages.id=' + prefix + 'kunena_attachments.mesid '
 					// this post cannot be a its topic's main post, it MUST be a reply-post
 					// see https://github.com/akhoury/nodebb-plugin-import#important-note-on-topics-and-posts
+        + 'GROUP BY ' +  prefix + 'kunena_messages.id '
 				+ 'WHERE '+ prefix + 'kunena_messages.parent	 > 0 '
 				+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
 
@@ -306,12 +309,15 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 					//normalize here
 					var map = {};
 					rows.forEach(function(row) {
-            //convert bbcode
-            // if(row._content){
-            //   var postContent = converter.parse(row._content, function(first_param, postContent){
-            //     return postContent;
-            //   });
-            // }
+
+            //attachments
+            if (row._attachments) {
+							row._attachments = [row._attachments];
+						}
+
+            row._attachments.forEach(function(value){
+                value='https://joomla.org.tw/media/kunena/attachments/'.row_uid.value;
+            });
 
 
 						row._content = row._content || '';
