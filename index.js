@@ -310,18 +310,19 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 					//normalize here
 					var map = {};
 
-          var attachments = [];
+          //var attachments = [];
 
 					rows.forEach(function(row) {
 
             //attachments
 
 
-            if (row._attachments) {
-              attachments = [ row._attachments ];
 
+              var attachments = [ row._attachments ];
+
+           if (attachments.length) {
               for(var i = 0; i< attachments.length; i++){
-                attachments[i] = attachmentUrl + row._uid + '/' + attachments[i] ;
+                attachments[i] = attachmentUrl + row._uid + '/' + attachments[i];
               }
 
 						}
