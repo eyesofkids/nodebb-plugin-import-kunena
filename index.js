@@ -4,7 +4,8 @@ var mysql = require('mysql');
 var _ = require('underscore');
 var noop = function(){};
 var logPrefix = '[nodebb-plugin-import-kunena]';
-
+var avatarUrl = 'https://joomla.org.tw/media/kunena/avatars/';
+var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 
 (function(Exporter) {
 
@@ -97,7 +98,7 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 						row._website = Exporter.validateUrl(row._website);
 
             //avatar: change for your site url
-            row._picture = 'https://joomla.org.tw/media/kunena/avatars/'+row._picture;
+            row._picture = avatarUrl+row._picture;
 
 
             //birthdate
@@ -321,7 +322,7 @@ var logPrefix = '[nodebb-plugin-import-kunena]';
 						}
 
             attachments.forEach(function(attach){
-                attach = 'https://joomla.org.tw/media/kunena/attachments/' + row._uid + '/' + attach;
+                attach = attachmentUrl + row._uid + '/' + attach;
             });
 
             row._attachments = attachments;
