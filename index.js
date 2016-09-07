@@ -289,8 +289,8 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
         + 'JOIN ' + prefix + 'kunena_attachments ON ' + prefix + 'kunena_messages.id=' + prefix + 'kunena_attachments.mesid '
 					// this post cannot be a its topic's main post, it MUST be a reply-post
 					// see https://github.com/akhoury/nodebb-plugin-import#important-note-on-topics-and-posts
-        + 'GROUP BY ' +  prefix + 'kunena_messages.id '
 				+ 'WHERE '+ prefix + 'kunena_messages.parent	 > 0 '
+        + 'GROUP BY ' +  prefix + 'kunena_messages.id '
 				+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
 
 
