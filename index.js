@@ -4,7 +4,7 @@ var mysql = require('mysql');
 var _ = require('underscore');
 var noop = function(){};
 var logPrefix = '[nodebb-plugin-import-kunena]';
-var avatarUrl = 'https://joomla.org.tw/media/kunena/avatars/';
+var avatarUrl = 'https://joomla.org.tw/media/kunena/avatars/resized/size144/';
 var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 
 (function(Exporter) {
