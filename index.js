@@ -2,6 +2,7 @@
 var async = require('async');
 var mysql = require('mysql');
 var _ = require('underscore');
+var request = require('request');
 var noop = function(){};
 var logPrefix = '[nodebb-plugin-import-kunena]';
 var avatarUrl = 'https://joomla.org.tw/media/kunena/avatars/resized/size144/';
@@ -109,7 +110,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 
             //avatar: change for your site url
             if(row._picture){
-              row._picture = avatarUrl + row._picture;
+              row._picture = Exporter.checkUrl(avatarUrl + row._picture);
             }else{
               row._picture = '';
             }
@@ -575,6 +576,16 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 		var pattern = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/;
 		return url && url.length < 2083 && url.match(pattern) ? url : '';
 	};
+
+	Exporter.checkUrl = function(url){
+		request(url, function (err, resp) {
+			if (resp.statusCode === 200) {
+				return url;
+			}
+
+				return '';
+			});
+	}
 
 	Exporter.truncateStr = function(str, len) {
 		if (typeof str != 'string') return str;
