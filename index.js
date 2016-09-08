@@ -57,7 +57,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 				+ prefix + 'kunena_users.status as _badge, '
 				+ prefix + 'kunena_users.thankyou as _reputation, '
 				+ prefix + 'kunena_users.view as _profileviews, '
-				+ prefix + 'kunena_users.birthdate as _birthday, '
+				+ prefix + 'kunena_users.birthdate as _birthday '
 				//+ prefix + 'users.block as _banned, '
 				//+ prefix + 'user_usergroup_map.group_id as _gid '
 				+ 'FROM ' + prefix + 'kunena_users '
