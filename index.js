@@ -183,7 +183,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 
 						delete row.id;
 
-						map[row._uid] = row;
+						map[row._gid] = row;
 					});
 
 					callback(null, map);
