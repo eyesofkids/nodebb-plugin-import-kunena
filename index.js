@@ -45,7 +45,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 				+ prefix + 'kunena_messages.name as _username, '
 				+ prefix + 'kunena_messages.name as _alternativeUsername, '
 				+ prefix + 'unena_messages.email as _registrationEmail, '
-				+ 'UNIX_TIMESTAMP(' + prefix + 'users.registerDate) as _joindate, '
+				//+ 'UNIX_TIMESTAMP(' + prefix + 'users.registerDate) as _joindate, '
 				+ prefix + 'kunena_users.banned as _banned, '
 				+ prefix + 'kunena_messages.email as _email, '
         + prefix + 'kunena_users.moderator as _level, '
@@ -84,6 +84,8 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 					var map = {};
 					rows.forEach(function(row) {
 						// from unix timestamp (s) to JS timestamp (ms)
+						//
+						row._joindate = 1108629063;
 						row._joindate = ((row._joindate || 0) * 1000) || startms;
 
             row._level = row._level ? 'moderator' : '';
@@ -137,12 +139,12 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 		var prefix = Exporter.config('prefix');
 		var startms = +new Date();
 		var query = 'SELECT '
-				+ '* '
+				+ prefix + 'kunena_messages.id '
 				//+ prefix + 'kunena_messages.id as _gid, '
 				//+ prefix + 'kunena_messages.name as _name, '
 				//+ prefix + 'user_usergroup_map.user_id AS _ownerUid '
 				+ 'FROM ' + prefix + 'kunena_messages '
-				+ 'WHERE '+ prefix + 'kunena_messages.id < 100'
+				+ 'WHERE '+ prefix + 'kunena_messages.id < 100 '
 				+ 'LIMIT 1'
 				//+ 'JOIN ' + prefix + 'usergroups ON ' + prefix + 'user_usergroup_map.group_id=' + prefix + 'usergroups.id '
 				//+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
