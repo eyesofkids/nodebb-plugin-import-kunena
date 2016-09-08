@@ -181,6 +181,8 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 
 						row._name = 'Registed';
 
+						delete row.id;
+
 						map[row._uid] = row;
 					});
 
