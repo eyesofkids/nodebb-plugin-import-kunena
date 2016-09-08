@@ -147,7 +147,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 		var prefix = Exporter.config('prefix');
 		//var startms = +new Date();
 		var query = 'SELECT '
-				+ prefix + 'users.id as _id '
+				+ prefix + 'users.id as _gid '
 				//+ prefix + 'kunena_messages.id as _gid, '
 				//+ prefix + 'kunena_messages.name as _name, '
 				//+ prefix + 'user_usergroup_map.user_id AS _ownerUid '
@@ -174,14 +174,11 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 					var map = {};
 					rows.forEach(function(row) {
 
-
 						row._gid = 1;
 						//administrator id
 						row._ownerUid = 63;
 
 						row._name = 'Registed';
-
-						delete row._id;
 
 						map[row._gid] = row;
 					});
