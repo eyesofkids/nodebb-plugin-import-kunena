@@ -42,9 +42,9 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 		var startms = +new Date();
 		var query = 'SELECT '
 				+ prefix + 'kunena_users.userid as _uid, '
-				+ prefix + 'kunena_messages.name as _username, '
-				+ prefix + 'kunena_messages.name as _alternativeUsername, '
-				+ prefix + 'kunena_messages.email as _registrationEmail, '
+				+ prefix + 'users.username as _username, '
+				+ prefix + 'users.name as _alternativeUsername, '
+				+ prefix + 'users.email as _registrationEmail, '
 				//+ 'UNIX_TIMESTAMP(' + prefix + 'users.registerDate) as _joindate, '
 				+ prefix + 'kunena_users.banned as _banned, '
 				+ prefix + 'kunena_messages.email as _email, '
@@ -62,6 +62,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 				//+ prefix + 'user_usergroup_map.group_id as _gid '
 				+ 'FROM ' + prefix + 'kunena_users '
 				+ 'JOIN ' + prefix + 'kunena_messages ON ' + prefix + 'kunena_users.userid = ' + prefix + 'kunena_messages.userid '
+				+ 'JOIN ' + prefix + 'users ON ' + prefix + 'users.id = ' + prefix + 'kunena_users.userid '
 				//+ 'LEFT JOIN ' + prefix + 'BANNED_USERS ON ' + prefix + 'BANNED_USERS.USER_ID = ' + prefix + 'USERS.USER_ID '
 				//+ 'LEFT JOIN ' + prefix + 'USER_GROUPS ON ' + prefix + 'USER_GROUPS.USER_ID = ' + prefix + 'USERS.USER_ID '
 				+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
