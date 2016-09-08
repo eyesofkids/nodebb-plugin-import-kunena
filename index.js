@@ -148,7 +148,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 		var prefix = Exporter.config('prefix');
 		//var startms = +new Date();
 		var query = 'SELECT '
-				+ prefix + 'usergroups.id as _gid '
+				+ prefix + 'usergroups.id as _gid, '
 				//+ prefix + 'kunena_messages.id as _gid, '
 				+ prefix + 'usergroups.title as _name, '
 				+ prefix + 'usergroups.id  AS _ownerUid '
