@@ -44,7 +44,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 				+ prefix + 'kunena_users.userid as _uid, '
 				+ prefix + 'kunena_messages.name as _username, '
 				+ prefix + 'kunena_messages.name as _alternativeUsername, '
-				+ prefix + 'unena_messages.email as _registrationEmail, '
+				+ prefix + 'kunena_messages.email as _registrationEmail, '
 				//+ 'UNIX_TIMESTAMP(' + prefix + 'users.registerDate) as _joindate, '
 				+ prefix + 'kunena_users.banned as _banned, '
 				+ prefix + 'kunena_messages.email as _email, '
