@@ -308,15 +308,15 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 				+ prefix + 'kunena_messages.time as _timestamp, '
 				+ prefix + 'kunena_messages.parent as _toPid, '
 				+ prefix + 'kunena_messages.locked as _locked, '
-				+ prefix + 'kunena_attachments.filename as _attachments, '
+				+ 'GROUP_CONCAT(' + prefix + 'kunena_attachments.filename) as _attachments, '
 				+ prefix + 'kunena_messages.ip as _ip '
 				+ 'FROM ' + prefix + 'kunena_messages '
-				+ 'JOIN ' + prefix + 'kunena_messages_text ON ' + prefix + 'kunena_messages.id=' + prefix + 'kunena_messages_text.mesid '
-        + 'JOIN ' + prefix + 'kunena_attachments ON ' + prefix + 'kunena_messages.id=' + prefix + 'kunena_attachments.mesid '
+				+ 'LEFT JOIN ' + prefix + 'kunena_messages_text ON ' + prefix + 'kunena_messages.id=' + prefix + 'kunena_messages_text.mesid '
+        + 'LEFT JOIN ' + prefix + 'kunena_attachments ON ' + prefix + 'kunena_messages.id=' + prefix + 'kunena_attachments.mesid '
 					// this post cannot be a its topic's main post, it MUST be a reply-post
 					// see https://github.com/akhoury/nodebb-plugin-import#important-note-on-topics-and-posts
 				+ 'WHERE '+ prefix + 'kunena_messages.parent	 > 0 '
-        //+ 'GROUP BY ' +  prefix + 'kunena_messages.id '
+        + 'GROUP BY ' +  prefix + 'kunena_messages.id '
 				+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
 
 
@@ -344,16 +344,16 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 
 
 
-              //var attachments = row._attachments.split(',');
+              var attachments = row._attachments.split(',');
 
-          //  if (attachments.length) {
-          //     for(var i = 0; i< attachments.length; i++){
-          //       attachments[i] = attachmentUrl + row._uid + '/' + attachments[i];
-          //     }
-					//
-					// 	}
+           if (attachments.length) {
+              for(var i = 0; i< attachments.length; i++){
+                attachments[i] = attachmentUrl + row._uid + '/' + attachments[i];
+              }
 
-            row._attachments = [row._attachments];
+						}
+
+            row._attachments = attachments;
 
 						row._content = row._content || '';
 						row._timestamp = ((row._timestamp || 0) * 1000) || startms;
