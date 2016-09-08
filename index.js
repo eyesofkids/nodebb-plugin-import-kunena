@@ -344,17 +344,18 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
             //attachments
 
 
-
-              var attachments = row._attachments.split(',');
-
-           if (attachments.length) {
+           if (row._attachments) {
+						  var attachments = row._attachments.split(',');
               for(var i = 0; i< attachments.length; i++){
                 attachments[i] = attachmentUrl + row._uid + '/' + attachments[i];
               }
 
+							row._attachments = attachments;
+						}else{
+							row._attachments =[];
 						}
 
-            row._attachments = attachments;
+
 
 						row._content = row._content || '';
 						row._timestamp = ((row._timestamp || 0) * 1000) || startms;
