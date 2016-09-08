@@ -147,12 +147,12 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 		var prefix = Exporter.config('prefix');
 		var startms = +new Date();
 		var query = 'SELECT '
-				+ prefix + 'kunena_messages.id '
+				+ prefix + 'users.id '
 				//+ prefix + 'kunena_messages.id as _gid, '
 				//+ prefix + 'kunena_messages.name as _name, '
 				//+ prefix + 'user_usergroup_map.user_id AS _ownerUid '
-				+ 'FROM ' + prefix + 'kunena_messages '
-				+ 'WHERE '+ prefix + 'kunena_messages.id < 100 '
+				+ 'FROM ' + prefix + 'users '
+				+ 'WHERE '+ prefix + 'users.id < 100 '
 				+ 'LIMIT 1'
 				//+ 'JOIN ' + prefix + 'usergroups ON ' + prefix + 'user_usergroup_map.group_id=' + prefix + 'usergroups.id '
 				//+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
