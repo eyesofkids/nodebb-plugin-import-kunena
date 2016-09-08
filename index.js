@@ -113,7 +113,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
             }
 
 						//force _gid
-						row._gid = '2';
+						row._gid = 2;
 
 
             //birthdate
