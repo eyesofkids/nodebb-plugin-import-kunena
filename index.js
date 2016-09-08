@@ -59,9 +59,9 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 				+ prefix + 'kunena_users.view as _profileviews, '
 				+ prefix + 'kunena_users.birthdate as _birthday '
 				//+ prefix + 'users.block as _banned, '
-				//+ prefix + 'user_usergroup_map.group_id as _gid '
+				+ prefix + 'user_usergroup_map.group_id as _gid '
 				+ 'FROM ' + prefix + 'kunena_users '
-			//	+ 'JOIN ' + prefix + 'kunena_messages ON ' + prefix + 'kunena_users.userid = ' + prefix + 'kunena_messages.userid '
+				+ 'JOIN ' + prefix + 'user_usergroup_map ON ' + prefix + 'kunena_users.userid = ' + prefix + 'user_usergroup_map.user_id '
 				+ 'JOIN ' + prefix + 'users ON ' + prefix + 'users.id = ' + prefix + 'kunena_users.userid '
 				//+ 'LEFT JOIN ' + prefix + 'BANNED_USERS ON ' + prefix + 'BANNED_USERS.USER_ID = ' + prefix + 'USERS.USER_ID '
 				//+ 'LEFT JOIN ' + prefix + 'USER_GROUPS ON ' + prefix + 'USER_GROUPS.USER_ID = ' + prefix + 'USERS.USER_ID '
@@ -90,6 +90,8 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 							row._username = 'guest';
 							row._name = 'guest';
 							row._email = 'fake@joomla.com.tw';
+							//force _gid
+							row._gid = 1;
 						}
 
 
@@ -112,8 +114,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
               row._picture = '';
             }
 
-						//force _gid
-						row._gid = 1;
+
 
 
             //birthdate
@@ -147,15 +148,15 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 		var prefix = Exporter.config('prefix');
 		//var startms = +new Date();
 		var query = 'SELECT '
-				+ prefix + 'users.id as _gid '
+				+ prefix + 'usergroups.id as _gid '
 				//+ prefix + 'kunena_messages.id as _gid, '
-				//+ prefix + 'kunena_messages.name as _name, '
-				//+ prefix + 'user_usergroup_map.user_id AS _ownerUid '
-				+ 'FROM ' + prefix + 'users '
-				+ 'WHERE '+ prefix + 'users.id < 100 '
-				+ 'LIMIT 1';
+				+ prefix + 'usergroups.title as _name, '
+				+ prefix + 'usergroups.id  AS _ownerUid '
+				+ 'FROM ' + prefix + 'usergroups '
+				//+ 'WHERE '+ prefix + 'users.id < 100 '
+				//+ 'LIMIT 1';
 				//+ 'JOIN ' + prefix + 'usergroups ON ' + prefix + 'user_usergroup_map.group_id=' + prefix + 'usergroups.id '
-				//+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
+				+ (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
 
 
 		if (!Exporter.connection) {
@@ -174,11 +175,11 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 					var map = {};
 					rows.forEach(function(row) {
 
-						row._gid = 1;
+						//row._gid = 1;
 						//administrator id
 						row._ownerUid = 63;
 
-						row._name = 'Registed';
+						//row._name = 'Registed';
 
 						map[row._gid] = row;
 					});
