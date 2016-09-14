@@ -301,8 +301,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
     var err;
     var prefix = Exporter.config('prefix');
     var startms = +new Date();
-    var query =
-        'SELECT '
+    var query = 'SELECT '
         + prefix + 'kunena_messages.id as _pid, '
         + prefix + 'kunena_messages.userid as _uid, '
         + prefix + 'kunena_messages.thread as _tid, '
