@@ -55,7 +55,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
         //+ prefix + 'kunena_users.websiteurl as _website, '
       //  + prefix + 'kunena_users.status_text as _occupation, '
       //  + prefix + 'kunena_users.location as _location, '
-        + prefix + 'kunena_users.avatar as _picture, '
+        //+ prefix + 'kunena_users.avatar as _picture, '
         //+ prefix + 'kunena_users.status as _badge, '
         //+ prefix + 'kunena_users.thankyou as _reputation, '
         //+ prefix + 'kunena_users.view as _profileviews, '
@@ -105,16 +105,18 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
             // lower case the email for consistency
             row._email = (row._email || '').toLowerCase();
 
+            //may be cause db connection error/overtime
             // I don't know about you about I noticed a lot my users have incomplete urls, urls like: http://
             //row._picture = Exporter.validateUrl(row._picture);
-            row._website = Exporter.validateUrl(row._website);
+            //row._website = Exporter.validateUrl(row._website);
 
             //avatar: change for your site url
-            if(row._picture){
-              //row._picture = Exporter.checkUrl(avatarUrl + row._picture);
-            }else{
-              row._picture = '';
-            }
+            // if(row._picture){
+            //   //may be cause db connection error/overtime
+            //   //row._picture = Exporter.checkUrl(avatarUrl + row._picture);
+            // }else{
+            row._picture = '';
+            //}
 
 
 
