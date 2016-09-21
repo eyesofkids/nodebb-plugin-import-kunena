@@ -6,8 +6,8 @@ var request = require('request');
 var noop = function(){};
 var logPrefix = '[nodebb-plugin-import-kunena]';
 // add avatarUrl and attachmentUrl
-var avatarUrl = 'https://joomla.org.tw/media/kunena/avatars/resized/size144/';
-var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
+var avatarUrl = 'https://yourwebsite.url/media/kunena/avatars/resized/size144/';
+var attachmentUrl = 'https://yourwebsite.url/media/kunena/attachments/';
 
 (function(Exporter) {
 
