@@ -43,7 +43,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
     var prefix = Exporter.config('prefix');
     var startms = +new Date();
     var query = 'SELECT '
-        + prefix + 'kunena_users.userid as _uid, '
+        + prefix + 'users.id as _uid, '
         + prefix + 'users.username as _username, '
         + prefix + 'users.name as _alternativeUsername, '
         + prefix + 'users.email as _registrationEmail, '
@@ -56,15 +56,15 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
         + prefix + 'kunena_users.status_text as _occupation, '
         + prefix + 'kunena_users.location as _location, '
         + prefix + 'kunena_users.avatar as _picture, '
-        + prefix + 'kunena_users.status as _badge, '
-        + prefix + 'kunena_users.thankyou as _reputation, '
-        + prefix + 'kunena_users.view as _profileviews, '
-        + prefix + 'kunena_users.birthdate as _birthday, '
+        //+ prefix + 'kunena_users.status as _badge, '
+        //+ prefix + 'kunena_users.thankyou as _reputation, '
+        //+ prefix + 'kunena_users.view as _profileviews, '
+        //+ prefix + 'kunena_users.birthdate as _birthday, '
         //+ prefix + 'users.block as _banned, '
         + prefix + 'user_usergroup_map.group_id as _gid '
-        + 'FROM ' + prefix + 'kunena_users '
-        + 'LEFT JOIN ' + prefix + 'user_usergroup_map ON ' + prefix + 'kunena_users.userid = ' + prefix + 'user_usergroup_map.user_id '
-        + 'LEFT JOIN ' + prefix + 'users ON ' + prefix + 'users.id = ' + prefix + 'kunena_users.userid '
+        + 'FROM ' + prefix + 'users '
+        + 'JOIN ' + prefix + 'user_usergroup_map ON ' + prefix + 'users.id = ' + prefix + 'user_usergroup_map.user_id '
+        + 'JOIN ' + prefix + 'kunena_users ON ' + prefix + 'users.id = ' + prefix + 'kunena_users.userid '
         //+ 'LEFT JOIN ' + prefix + 'BANNED_USERS ON ' + prefix + 'BANNED_USERS.USER_ID = ' + prefix + 'USERS.USER_ID '
         //+ 'LEFT JOIN ' + prefix + 'USER_GROUPS ON ' + prefix + 'USER_GROUPS.USER_ID = ' + prefix + 'USERS.USER_ID '
         + (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
@@ -88,13 +88,13 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
           rows.forEach(function(row) {
             // from unix timestamp (s) to JS timestamp (ms)
             //
-            if(~~row._uid < 0) {
-              row._username = 'guest';
-              row._name = 'guest';
-              row._email = 'fake@joomla.com.tw';
-              //force _gid
-              row._gid = 1;
-            }
+            // if(~~row._uid < 0) {
+            //   row._username = 'guest';
+            //   row._name = 'guest';
+            //   row._email = 'fake@joomla.com.tw';
+            //   //force _gid
+            //   row._gid = 1;
+            // }
 
 
             row._joindate = 1108629063;
@@ -120,9 +120,9 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 
 
             //birthdate
-            var birthdate = new Date(row._birthday);
-
-            row._birthday = (birthdate.getMonth() + 1) + '/' + birthdate.getDate() + '/' +  birthdate.getFullYear();
+            // var birthdate = new Date(row._birthday);
+            //
+            // row._birthday = (birthdate.getMonth() + 1) + '/' + birthdate.getDate() + '/' +  birthdate.getFullYear();
 
             row._banned = row._banned ? 1 : 0;
 
