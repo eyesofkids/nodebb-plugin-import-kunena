@@ -52,9 +52,9 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
         + prefix + 'users.email as _email, '
         + prefix + 'kunena_users.moderator as _level, '
         + prefix + 'kunena_users.signature as _signature, '
-        + prefix + 'kunena_users.websiteurl as _website, '
-        + prefix + 'kunena_users.status_text as _occupation, '
-        + prefix + 'kunena_users.location as _location, '
+        //+ prefix + 'kunena_users.websiteurl as _website, '
+      //  + prefix + 'kunena_users.status_text as _occupation, '
+      //  + prefix + 'kunena_users.location as _location, '
         + prefix + 'kunena_users.avatar as _picture, '
         //+ prefix + 'kunena_users.status as _badge, '
         //+ prefix + 'kunena_users.thankyou as _reputation, '
@@ -63,8 +63,8 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
         //+ prefix + 'users.block as _banned, '
         + prefix + 'user_usergroup_map.group_id as _gid '
         + 'FROM ' + prefix + 'users '
-        + 'JOIN ' + prefix + 'user_usergroup_map ON ' + prefix + 'users.id = ' + prefix + 'user_usergroup_map.user_id '
-        + 'JOIN ' + prefix + 'kunena_users ON ' + prefix + 'users.id = ' + prefix + 'kunena_users.userid '
+        + 'LEFT JOIN ' + prefix + 'user_usergroup_map ON ' + prefix + 'users.id = ' + prefix + 'user_usergroup_map.user_id '
+        + 'LEFT JOIN ' + prefix + 'kunena_users ON ' + prefix + 'users.id = ' + prefix + 'kunena_users.userid '
         //+ 'LEFT JOIN ' + prefix + 'BANNED_USERS ON ' + prefix + 'BANNED_USERS.USER_ID = ' + prefix + 'USERS.USER_ID '
         //+ 'LEFT JOIN ' + prefix + 'USER_GROUPS ON ' + prefix + 'USER_GROUPS.USER_ID = ' + prefix + 'USERS.USER_ID '
         + (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
@@ -111,7 +111,7 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
 
             //avatar: change for your site url
             if(row._picture){
-              row._picture = Exporter.checkUrl(avatarUrl + row._picture);
+              //row._picture = Exporter.checkUrl(avatarUrl + row._picture);
             }else{
               row._picture = '';
             }
