@@ -63,8 +63,8 @@ var attachmentUrl = 'https://joomla.org.tw/media/kunena/attachments/';
         //+ prefix + 'users.block as _banned, '
         + prefix + 'user_usergroup_map.group_id as _gid '
         + 'FROM ' + prefix + 'kunena_users '
-        + 'JOIN ' + prefix + 'user_usergroup_map ON ' + prefix + 'kunena_users.userid = ' + prefix + 'user_usergroup_map.user_id '
-        + 'JOIN ' + prefix + 'users ON ' + prefix + 'users.id = ' + prefix + 'kunena_users.userid '
+        + 'LEFT JOIN ' + prefix + 'user_usergroup_map ON ' + prefix + 'kunena_users.userid = ' + prefix + 'user_usergroup_map.user_id '
+        + 'LEFT JOIN ' + prefix + 'users ON ' + prefix + 'users.id = ' + prefix + 'kunena_users.userid '
         //+ 'LEFT JOIN ' + prefix + 'BANNED_USERS ON ' + prefix + 'BANNED_USERS.USER_ID = ' + prefix + 'USERS.USER_ID '
         //+ 'LEFT JOIN ' + prefix + 'USER_GROUPS ON ' + prefix + 'USER_GROUPS.USER_ID = ' + prefix + 'USERS.USER_ID '
         + (start >= 0 && limit >= 0 ? 'LIMIT ' + start + ',' + limit : '');
